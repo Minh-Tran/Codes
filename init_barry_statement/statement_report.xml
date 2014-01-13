@@ -1,0 +1,5 @@
+<openerp>
+	<data>
+		<report id="report_statement" model="account.voucher" header="False" name="statement" string="Statement" rml="init_barry_statement/report/statement.rml"/>
+	</data>
+</openerp>

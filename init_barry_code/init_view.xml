@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_base_company_inherit_init_form">
+            <field name="name">base.res.company.form.inherit</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='currency_id']" position="after">
+						<field name="property_account_income_partner" />
+						<field name="property_account_expense_partner" />
+	            	</xpath>
+            </field>
+        </record>
+        
+        <!-- =====================================================
+		=================== % Common Interest ===============
+		===================================================== -->
+		<record id="init_common_interest_search_view" model="ir.ui.view">
+            <field name="name">init.common.interest.search</field>
+            <field name="model">init.common.interest</field>
+            <field name="arch" type="xml">
+                <search string="Common Interest">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="user_id"/>
+                </search>
+            </field>
+        </record>
+        <record id="init_common_interest_form_view" model="ir.ui.view">
+            <field name="name">init.common.interest.form</field>
+            <field name="model">init.common.interest</field>
+            <field name="arch" type="xml">
+                <form string="Common Interest" version="7.0">
+                    <sheet>					
+                        <group>
+							<field name="name"/>
+							<field name="type"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+                            <field name="user_id" readonly="1"/>
+                            
+                            <field name="line_ids" attrs="{'invisible':[('type','=','shares')]}">
+                            	<tree string="Common Interest Lines" editable="top">
+				                    <field name="partner_id" domain="[('company_id', '=', parent.company_id)]"/>
+									<field name="percent" sum="Percent"/>
+				                </tree>
+                            	<form string="Common Interest Line">
+				                    <sheet>					
+				                        <group>
+											<field name="partner_id" domain="[('company_id', '=', parent.company_id)]"/>
+				                            <field name="percent"/>
+				                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>				                            
+				                        </group>
+				                    </sheet>
+				                </form>
+                            </field>
+                            <field name="shares_line_ids" attrs="{'invisible':[('type','=','percent')]}">
+                            	<tree string="Common Interest Lines" editable="top">
+				                    <field name="partner_id" domain="[('company_id', '=', parent.company_id)]"/>
+									<field name="percent" string="Shares" sum="Shares"/>
+				                </tree>
+                            	<form string="Common Interest Line">
+				                    <sheet>					
+				                        <group>
+											<field name="partner_id" domain="[('company_id', '=', parent.company_id)]"/>
+				                            <field name="percent" string="Shares" sum="Shares"/>
+				                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>				                            
+				                        </group>
+				                    </sheet>
+				                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="init_common_interest_list_view" model="ir.ui.view">
+            <field name="name">init.common.interest.list</field>
+            <field name="model">init.common.interest</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Common Interest">
+                    <field name="name"/>
+					<field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+		
+        <record id="init_common_interest_action_form" model="ir.actions.act_window">
+            <field name="name">Common Interest</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">init.common.interest</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="init_common_interest_search_view"/>
+            <field name="view_id" ref="init_common_interest_list_view"/>
+        </record>
+        <menuitem action="init_common_interest_action_form"
+            groups="base.group_no_one"
+            id="menu_init_common_interest_action_form"
+            parent="product.prod_config_main" sequence="10"/>
+            
+        <!-- =====================================================
+		=================== Bulk Charge ===============
+		===================================================== -->
+		<record id="init_probility_charge_search_view" model="ir.ui.view">
+            <field name="name">init.probility.charge.search</field>
+            <field name="model">init.probility.charge</field>
+            <field name="arch" type="xml">
+                <search string="Bulk Charge">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                     <field name="user_id"/>
+                     <field name="interest_id"/>
+                     <field name="auto_month" invisible="1"/> 
+                </search>
+            </field>
+        </record>
+        <record id="init_probility_charge_form_view" model="ir.ui.view">
+            <field name="name">init.probility.charge.form</field>
+            <field name="model">init.probility.charge</field>
+            <field name="arch" type="xml">
+                <form string="Bulk Charge" version="7.0">
+                	<header>
+	                    <button name="action_invoice_create" context="{'open_invoice': True}" type="object" states="confirm" string="Create Invoice"/>
+	                    <button name="action_confirm" type="object" states="draft" string="Validate" groups="base.group_user"/>
+	                    <button name="action_cancel" type="object" states="confirm" string="Cancel" groups="base.group_no_one"/>
+	                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft" statusbar_colors='{"confirm":"blue","invoiced":"blue"}'/>
+	                </header>
+                    <sheet>					
+                        <group>
+							<field name="name"/>                            
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="interest_id"/>
+                            <field name="type"/>
+                            <field name="property_account_income_partner" />
+                            <field name="date_invoice" required="1"/>
+                            <field name="value_charge"/>
+                            <field name="currency_id"/> 
+                            <field name="auto_month" invisible="1"/> 
+                            <label string=""/>
+                            <button name="action_compute" type="object" states="draft" string="Compute Charge" groups="base.group_no_one"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="line_ids" readonly="1">
+                            	<tree string="Bulk Charge Lines">
+				                    <field name="partner_id"/>
+									<field name="percent"/>
+									<field name="amount"/>
+				                </tree>
+                            	<form string="Bulk Charge Line">
+				                    <sheet>					
+				                        <group>
+											<field name="partner_id"/>
+				                            <field name="percent"/>
+				                            <field name="amount"/>
+				                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>				                            
+				                        </group>
+				                    </sheet>
+				                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="init_probility_charge_list_view" model="ir.ui.view">
+            <field name="name">init.probility.charge.list</field>
+            <field name="model">init.probility.charge</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Bulk Charge">
+                    <field name="name"/>
+					<field name="interest_id"/>
+                    <field name="value_charge"/>	
+                     <field name="currency_id"/>
+                     <field name="state"/>				
+					<field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+		
+             
+        <record id="init_probility_charge_action_form" model="ir.actions.act_window">
+            <field name="name">Bulk Charge</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">init.probility.charge</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('auto_month','=',0)]</field>
+            <field name="context">{'default_auto_month':0}</field>
+            <field name="search_view_id" ref="init_probility_charge_search_view"/>
+            <field name="view_id" ref="init_probility_charge_list_view"/>
+        </record>
+        
+        <record id="init_probility_charge_action_form1" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="init_probility_charge_form_view"/>
+            <field name="act_window_id" ref="init_probility_charge_action_form"/>
+        </record>
+        <record id="init_probility_charge_action_tree1" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="init_probility_charge_list_view"/>
+            <field name="act_window_id" ref="init_probility_charge_action_form"/>
+        </record>
+        
+        <menuitem action="init_probility_charge_action_form"
+            groups="base.group_no_one"
+            id="menu_init_probility_charge_action_form"
+            parent="account.menu_finance_receivables" sequence="100"/>
+        
+        ================== config charge ================
+        
+        <record id="init_probility_charge_form_config_view" model="ir.ui.view">
+            <field name="name">init.probility.charge.config.form</field>
+            <field name="model">init.probility.charge</field>
+            <field name="arch" type="xml">
+                <form string="Bulk Charge" version="7.0">
+                	<header>
+	                    <button name="action_confirm" type="object" states="draft" string="Validate" groups="base.group_user"/>
+	                    <button name="action_cancel" type="object" states="confirm" string="Cancel" groups="base.group_no_one"/>
+	                    
+	                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft" statusbar_colors='{"confirm":"blue","invoiced":"blue"}'/>
+	                </header>
+                    <sheet>					
+                        <group>
+							<field name="name" colspan="3"/> 
+							<group col="4">                           
+	                            <field name="company_id" groups="base.group_multi_company" on_change="onchange_company_id(company_id)"/>
+	                            <field name="interest_id"/>
+	                            <field name="property_account_income_partner" on_change="onchange_company_id(company_id)"/>
+	                            	                            
+	                            <field name="user_id" readonly="1"/>
+	                            <field name="value_charge"/>
+	                            <field name="currency_id"/> 
+	                            <field name="interval_number"/>
+	                            <field name="interval_type"/>
+	                            <field name="nextcall"/>  
+	                            <field name="numbercall"/> 
+	                            <field name="auto_month" invisible="1"/> 
+	                            <field name="date_invoice" required="1"/>
+	                            <label string=""/>
+	                            <button name="action_compute" type="object" states="draft" string="Compute Charge" groups="base.group_no_one"/>
+	                            <field name="property_account_receivable"  required="1" invisible="1" />
+                            </group>
+                            <field name="line_ids" readonly="1" colspan="4" nolabel="1">
+                            	<tree string="Bulk Charge Lines">
+				                    <field name="partner_id"/>
+									<field name="percent"/>
+									<field name="amount"/>
+				                </tree>
+                            	<form string="Bulk Charge Line">
+				                    <sheet>					
+				                        <group>
+											<field name="partner_id"/>
+				                            <field name="percent"/>
+				                            <field name="amount"/>
+				                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>				                            
+				                        </group>
+				                    </sheet>
+				                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+		
+        
+       
+        <record id="init_probility_charge_action_config_form" model="ir.actions.act_window">
+            <field name="name">Config Bulk Charge Auto Run</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">init.probility.charge</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('auto_month','=',1)]</field>
+            <field name="context">{'default_auto_month':1}</field>
+            <field name="search_view_id" ref="init_probility_charge_search_view"/>
+            <field name="view_id" ref="init_probility_charge_list_view"/>
+        </record>
+        
+        <record id="init_probility_charge_action_config_form1" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="init_probility_charge_form_config_view"/>
+            <field name="act_window_id" ref="init_probility_charge_action_config_form"/>
+        </record>
+        <record id="init_probility_charge_action_config_tree1" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="init_probility_charge_list_view"/>
+            <field name="act_window_id" ref="init_probility_charge_action_config_form"/>
+        </record>
+		
+		 <menuitem action="init_probility_charge_action_config_form"
+            groups="base.group_no_one"
+            id="menu_init_probility_charge_action_config_form"
+            parent="product.prod_config_main" sequence="100"/>
+        <!-- ======================== res_partner form ============================= -->
+        
+            
+        <record id="view_partner_form_init2" model="ir.ui.view">
+            <field name="name">res.partner.form.init</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='parent_id']" position="before">
+		       		<field name="board_member" class="oe_inline"/>  
+		       		<label for="board_member" string="Board Member?"/>
+					<field name="owner_occupied" class="oe_inline"/>  
+					<label for="owner_occupied" string="Owner Occupied?"/>
+               </xpath> 
+            </field>
+        </record>  
+        
+    </data>
+</openerp>

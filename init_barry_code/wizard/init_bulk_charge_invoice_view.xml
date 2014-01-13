@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_init_bulk_charge_make_invoice" model="ir.ui.view">
+            <field name="name">Bulk Charge Make Invoice</field>
+            <field name="model">init.bulk.charge.make.invoice</field>
+            <field name="arch" type="xml">
+             <form string="Create invoices" version="7.0">
+             	<group col="1">
+	                <field name="company_id" invisible="1" />
+	                <field name="account_id" />
+	            </group>
+                <footer>
+                    <button name="make_invoices" string="Create Invoices" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_view_init_bulk_charge_make_invoice" model="ir.actions.act_window">
+            <field name="name">Make Invoices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">init.bulk.charge.make.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_init_bulk_charge_make_invoice"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

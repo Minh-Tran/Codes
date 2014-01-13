@@ -1,0 +1,133 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pricelist_partnerinfo_new_group,pricelist.partnerinfo.new_group,product.model_pricelist_partnerinfo,base.group_init_external_partner,1,0,0,0
+access_product_category_new_group,product.category.new_group,product.model_product_category,base.group_init_external_partner,1,0,0,0
+access_product_packaging_new_group,product.packaging.new_group,product.model_product_packaging,base.group_init_external_partner,1,0,0,0
+access_product_price_type_new_group,product.price.type.new_group,product.model_product_price_type,base.group_init_external_partner,1,0,0,0
+access_product_pricelist_new_group,product.pricelist.new_group,product.model_product_pricelist,base.group_init_external_partner,1,0,0,0
+access_product_pricelist_item_new_group,product.pricelist.item.new_group,product.model_product_pricelist_item,base.group_init_external_partner,1,0,0,0
+access_product_pricelist_type_new_group,product.pricelist.type.new_group,product.model_product_pricelist_type,base.group_init_external_partner,1,0,0,0
+access_product_pricelist_version_new_group,product.pricelist.version.new_group,product.model_product_pricelist_version,base.group_init_external_partner,1,0,0,0
+access_product_product_new_group,product.new_group,product.model_product_product,base.group_init_external_partner,1,0,0,0
+access_product_supplierinfo_new_group,product.supplierinfo.new_group,product.model_product_supplierinfo,base.group_init_external_partner,1,0,0,0
+access_product_template_new_group,product.template.new_group,product.model_product_template,base.group_init_external_partner,1,0,0,0
+access_product_ul_new_group,product.ul.new_group,product.model_product_ul,base.group_init_external_partner,1,0,0,0
+access_product_uom_new_group,product.uom.new_group,product.model_product_uom,base.group_init_external_partner,1,0,0,0
+access_product_uom_categ_new_group,product.uom.categ.new_group,product.model_product_uom_categ,base.group_init_external_partner,1,0,0,0
+access_account_analytic_account_new_group,account_analytic_account_new_group,analytic.model_account_analytic_account,base.group_init_external_partner,1,0,0,0
+access_ir_attachment_new_group,ir.attachment.new_group,base.model_ir_attachment,base.group_init_external_partner,1,0,0,0
+access_ir_property_new_group,ir.property.new_group,base.model_ir_property,base.group_init_external_partner,1,0,0,0
+access_res_partner_sale_new_group,res.partner.sale.new_group,base.model_res_partner,base.group_init_external_partner,1,0,0,0
+access_res_partner_bank_type_new_group,res.partner.bank.type.new_group,base.model_res_partner_bank_type,base.group_init_external_partner,1,0,0,0
+access_res_partner_bank_type_field_new_group,res.partner.bank.type.field.new_group,base.model_res_partner_bank_type_field,base.group_init_external_partner,1,0,0,0
+access_res_partner_category_new_group,res_partner_category group_user,base.model_res_partner_category,base.group_init_external_partner,1,0,0,0
+access_res_partner_title_new_group,res_partner_title group_user,base.model_res_partner_title,base.group_init_external_partner,1,0,0,0
+access_sale_new_group,sale.new_group,sale.model_sale_order,base.group_init_external_partner,1,0,0,0
+access_sale_order_new_group,sale.order.new_group,sale.model_sale_order_line,base.group_init_external_partner,1,0,0,0
+access_sale_shop_sale_new_group,sale.shop.sale.new_group,sale.model_sale_shop,base.group_init_external_partner,1,0,0,0
+access_procurement_new_group,procurement.new_group,procurement.model_procurement_order,base.group_init_external_partner,1,0,0,0
+access_stock_location_new_group,stock.location.new_group,stock.model_stock_location,base.group_init_external_partner,1,0,0,0
+access_stock_move_new_group,new_group,stock.model_stock_move,base.group_init_external_partner,1,0,0,0
+access_stock_picking_new_group,stock.picking.new_group,stock.model_stock_picking,base.group_init_external_partner,1,0,0,0
+access_stock_warehouse_new_group,stock.warehouse.new_group,stock.model_stock_warehouse,base.group_init_external_partner,1,0,0,0
+access_account_tax_code_new_group,account.analytic.account accountant new group,analytic.model_account_analytic_account,base.group_init_external_partner,1,0,0,0
+access_account_invoice_line_uinvoice_new_group,account.account invoice new group,account.model_account_account,base.group_init_external_partner,1,0,0,0
+access_account_move_line_uinvoice_new_group,account.account.type invoice new group,account.model_account_account_type,base.group_init_external_partner,1,0,0,0
+access_account_journal_period_uinvoice_new_group,account.analytic.journal new group,account.model_account_analytic_journal,base.group_init_external_partner,1,0,0,0
+access_account_journal_invoice_new_group,account.analytic.line invoice new group,account.model_account_analytic_line,base.group_init_external_partner,1,0,0,0
+access_account_period_invoice_new_group,account.bank.statement new group,account.model_account_bank_statement,base.group_init_external_partner,1,0,0,0
+access_account_invoice_group_invoice_new_group,account.bank.statement.line new group,account.model_account_bank_statement_line,base.group_init_external_partner,1,0,0,0
+access_account_analytic_line_invoice_new_group,account.fiscalyear.invoice new group,account.model_account_fiscalyear,base.group_init_external_partner,1,0,0,0
+access_res_partner_address_invoice_new_group,account.invoice new group,account.model_account_invoice,base.group_init_external_partner,1,0,0,0
+access_account_sequence_fiscal_year_invoice_new_group,account.invoice.line new group,account.model_account_invoice_line,base.group_init_external_partner,1,0,0,0
+access_account_payment_term_new_group,account.invoice.tax new group,account.model_account_invoice_tax,base.group_init_external_partner,1,0,0,0
+access_account_account_type_new_group,account.journal invoice new group,account.model_account_journal,base.group_init_external_partner,1,0,0,0
+access_account_journal_column_new_group,account.journal.period new group,account.model_account_journal_period,base.group_init_external_partner,1,0,0,0
+access_account_subscription_new_group,account.model new group,account.model_account_model,base.group_init_external_partner,1,0,0,0
+access_account_subscription_line_new_group,account.model.line new group,account.model_account_model_line,base.group_init_external_partner,1,0,0,0
+access_account_analytic_journal_new_group,account.move.reconcile new group,account.model_account_move_reconcile,base.group_init_external_partner,1,0,0,0
+access_account_invoice_accountant_new_group,account.payment.term new group,account.model_account_payment_term,base.group_init_external_partner,1,0,0,0
+access_account_tax_code_accountant_new_group,account.payment.term.line new group,account.model_account_payment_term_line,base.group_init_external_partner,1,0,0,0
+access_account_cashbox_line_new_group,account.period invoice new group,account.model_account_period,base.group_init_external_partner,1,0,0,0
+access_account_invoice_tax_accountant_new_group,account.sequence.fiscalyear invoice new group,account.model_account_sequence_fiscalyear,base.group_init_external_partner,1,0,0,0
+access_account_invoice_line_accountant_new_group,account.subscription new group,account.model_account_subscription,base.group_init_external_partner,1,0,0,0
+access_res_partner_address_accountant_new_group,account.subscription.line new group,account.model_account_subscription_line,base.group_init_external_partner,1,0,0,0
+access_account_analytic_accountant_new_group,account.tax new group,account.model_account_tax,base.group_init_external_partner,1,0,0,0
+access_account_financial_report_new_group,account.tax.code new group,account.model_account_tax_code,base.group_init_external_partner,1,0,0,0
+access_account_account_partner_manager_new_group,account.tax.code accountant new group,account.model_account_tax_code,base.group_init_external_partner,1,0,0,0
+access_account_fiscalyear_partner_manager_new_group,report.account.receivable.invoice new group,account.model_report_account_receivable,base.group_init_external_partner,1,0,0,0
+access_account_voucher_manager_new_group,account.voucher,account_voucher.model_account_voucher,base.group_init_external_partner,1,0,0,0
+access_account_voucher_line_manager_new_group,account.voucher.line,account_voucher.model_account_voucher_line,base.group_init_external_partner,1,0,0,0
+access_sale_receipt_report_manager_new_group,account.sale.receipt.report,account_voucher.model_sale_receipt_report,base.group_init_external_partner,1,0,0,0
+access_sale_receipt_report_user_new_group,account.sale.receipt.report,account_voucher.model_sale_receipt_report,base.group_init_external_partner,1,0,0,0
+access_account_move_uinvoice_new_group,account.move_new_group,account.model_account_move,base.group_init_external_partner,1,0,0,0
+access_account_move_line_uinvoice_new_group,account.move.line invoice_new_group,account.model_account_move_line,base.group_init_external_partner,1,0,0,0
+access_account_move_reconcile_uinvoice_new_group,account.move.reconcile_new_group,account.model_account_move_reconcile,base.group_init_external_partner,1,0,0,0
+access_account_journal_period_uinvoice_new_group,account.journal.period_new_group,account.model_account_journal_period,base.group_init_external_partner,1,0,0,0
+access_stock_warehouse_orderpoint,stock.warehouse.orderpoint,procurement.model_stock_warehouse_orderpoint,base.group_init_external_partner,1,0,0,0
+access_crm_segmentation_user1,crm.segmentation user1,crm.model_crm_segmentation,base.group_init_external_partner,1,0,0,0
+access_crm_segmentation_line_user1,crm.segmentation.line user1,crm.model_crm_segmentation_line,base.group_init_external_partner,1,0,0,0
+access_crm_case_channel_user1,crm.case.channel user1,crm.model_crm_case_channel,base.group_init_external_partner,1,0,0,0
+access_crm_case_section1,crm.case.section1,crm.model_crm_case_section,base.group_init_external_partner,1,0,0,0
+access_crm_case_categ1,crm.case.categ1,crm.model_crm_case_categ,base.group_init_external_partner,1,0,0,0
+access_crm_meeting_manager1,crm.meeting.manager1,crm.model_crm_meeting,base.group_init_external_partner,1,0,0,0
+access_crm_lead_manager1,crm.lead.manager1,crm.model_crm_lead,base.group_init_external_partner,1,0,0,0
+access_crm_phonecall_manager1,crm.phonecall.manager1,crm.model_crm_phonecall,base.group_init_external_partner,1,0,0,0
+access_crm_case_stage1,crm.case.stage1,crm.model_crm_case_stage,base.group_init_external_partner,1,0,0,0
+access_crm_case_resource_type_user1,crm_case_resource_type user1,crm.model_crm_case_resource_type,base.group_init_external_partner,1,0,0,0
+access_crm_phonecall_report_user1,crm.phonecall.report.user1,crm.model_crm_phonecall_report,base.group_init_external_partner,1,0,0,0
+access_res_partner_manager1,res.partner.crm.manager1,base.model_res_partner,base.group_init_external_partner,1,0,0,0
+access_res_partner_category_manager1,res.partner.category.crm.manager1,base.model_res_partner_category,base.group_init_external_partner,1,0,0,0
+mail_mail_message_manager1,mail.message.manager1,mail.model_mail_message,base.group_init_external_partner,1,0,0,0
+access_calendar_attendee_crm_user1,calendar.attendee.crm.user1,crm.model_calendar_attendee,base.group_init_external_partner,1,0,0,0
+mail_mailgate_thread1,mail.thread1,mail.model_mail_thread,base.group_init_external_partner,1,0,0,0
+access_res_company,res_company,base.model_res_company,base.group_init_external_partner,1,0,0,0
+access_res_partner_bank,res_partner_bank,base.model_res_partner_bank,base.group_init_external_partner,1,0,0,0
+access_account_analytic_account_user_init,account.analytic.account,analytic.model_account_analytic_account,base.group_init_external_partner,1,0,0,0
+access_account_analytic_line_project_init,account.analytic.line project,analytic.model_account_analytic_line,base.group_init_external_partner,1,0,0,0
+access_partner_task user_init,base.res.partner user,base.model_res_partner,base.group_init_external_partner,1,0,0,0
+access_project_category_init,project.project_category,project.model_project_category,base.group_init_external_partner,1,0,0,0
+access_project_project_init,project.project,project.model_project_project,base.group_init_external_partner,1,0,0,0
+access_project_task_init,project.task,project.model_project_task,base.group_init_external_partner,1,1,1,1
+access_project_task_type_user_init,project.task.type user,project.model_project_task_type,base.group_init_external_partner,1,0,0,0
+access_project_task_work_init,project.task.work,project.model_project_task_work,base.group_init_external_partner,1,0,0,0
+access_report_project_task_user_init,report.project.task.user,project.model_report_project_task_user,base.group_init_external_partner,1,1,1,1
+access_project_task_history_sale_user_init,project.task.history salesman,project.model_project_task_history,base.group_init_external_partner,1,1,1,1
+access_project_task_history_cumulative_init,project.task.history project,project.model_project_task_history_cumulative,base.group_init_external_partner,1,1,1,1
+access_project_task_type_sale_user_init,project.task.type salesman,project.model_project_task_type,base.group_init_external_partner,1,1,1,1
+access_resource_calendar_init,project.resource_calendar manager,resource.model_resource_calendar,base.group_init_external_partner,1,1,1,1
+access_account_financial_report,account.financial.report,account.model_account_financial_report,base.group_init_external_partner,1,1,1,1
+access_hr_employee,hr.employee,hr.model_hr_employee,base.group_init_external_partner,1,1,0,0
+access_account_tax_code_new_group,account.analytic.account accountant new group,analytic.model_account_analytic_account,portal.group_portal,1,1,1,0
+access_account_invoice_line_uinvoice_new_group,account.account invoice new group,account.model_account_account,portal.group_portal,1,1,1,0
+access_account_move_line_uinvoice_new_group,account.account.type invoice new group,account.model_account_account_type,portal.group_portal,1,1,1,0
+access_account_journal_period_uinvoice_new_group,account.analytic.journal new group,account.model_account_analytic_journal,portal.group_portal,1,1,1,0
+access_account_journal_invoice_new_group,account.analytic.line invoice new group,account.model_account_analytic_line,portal.group_portal,1,1,1,0
+access_account_period_invoice_new_group,account.bank.statement new group,account.model_account_bank_statement,portal.group_portal,1,1,1,0
+access_account_invoice_group_invoice_new_group,account.bank.statement.line new group,account.model_account_bank_statement_line,portal.group_portal,1,1,1,0
+access_account_analytic_line_invoice_new_group,account.fiscalyear.invoice new group,account.model_account_fiscalyear,portal.group_portal,1,1,1,0
+access_res_partner_address_invoice_new_group,account.invoice new group,account.model_account_invoice,portal.group_portal,1,1,1,0
+access_account_sequence_fiscal_year_invoice_new_group,account.invoice.line new group,account.model_account_invoice_line,portal.group_portal,1,1,1,0
+access_account_payment_term_new_group,account.invoice.tax new group,account.model_account_invoice_tax,portal.group_portal,1,1,1,0
+access_account_account_type_new_group,account.journal invoice new group,account.model_account_journal,portal.group_portal,1,1,1,0
+access_account_journal_column_new_group,account.journal.period new group,account.model_account_journal_period,portal.group_portal,1,1,1,0
+access_account_subscription_new_group,account.model new group,account.model_account_model,portal.group_portal,1,1,1,0
+access_account_subscription_line_new_group,account.model.line new group,account.model_account_model_line,portal.group_portal,1,1,1,0
+access_account_analytic_journal_new_group,account.move.reconcile new group,account.model_account_move_reconcile,portal.group_portal,1,1,1,0
+access_account_invoice_accountant_new_group,account.payment.term new group,account.model_account_payment_term,portal.group_portal,1,1,1,0
+access_account_tax_code_accountant_new_group,account.payment.term.line new group,account.model_account_payment_term_line,portal.group_portal,1,1,1,0
+access_account_cashbox_line_new_group,account.period invoice new group,account.model_account_period,portal.group_portal,1,1,1,0
+access_account_invoice_tax_accountant_new_group,account.sequence.fiscalyear invoice new group,account.model_account_sequence_fiscalyear,portal.group_portal,1,1,1,0
+access_account_invoice_line_accountant_new_group,account.subscription new group,account.model_account_subscription,portal.group_portal,1,1,1,0
+access_res_partner_address_accountant_new_group,account.subscription.line new group,account.model_account_subscription_line,portal.group_portal,1,1,1,0
+access_account_analytic_accountant_new_group,account.tax new group,account.model_account_tax,portal.group_portal,1,1,1,0
+access_account_financial_report_new_group,account.tax.code new group,account.model_account_tax_code,portal.group_portal,1,1,1,0
+access_account_account_partner_manager_new_group,account.tax.code accountant new group,account.model_account_tax_code,portal.group_portal,1,1,1,0
+access_account_fiscalyear_partner_manager_new_group,report.account.receivable.invoice new group,account.model_report_account_receivable,portal.group_portal,1,1,1,0
+access_account_voucher_manager_new_group,account.voucher,account_voucher.model_account_voucher,portal.group_portal,1,1,1,0
+access_account_voucher_line_manager_new_group,account.voucher.line,account_voucher.model_account_voucher_line,portal.group_portal,1,1,1,0
+access_sale_receipt_report_manager_new_group,account.sale.receipt.report,account_voucher.model_sale_receipt_report,portal.group_portal,1,1,1,0
+access_sale_receipt_report_user_new_group,account.sale.receipt.report,account_voucher.model_sale_receipt_report,portal.group_portal,1,1,1,0
+access_account_move_uinvoice_new_group,account.move_new_group,account.model_account_move,portal.group_portal,1,1,1,0
+access_account_move_line_uinvoice_new_group,account.move.line invoice_new_group,account.model_account_move_line,portal.group_portal,1,1,1,0
+access_account_move_reconcile_uinvoice_new_group,account.move.reconcile_new_group,account.model_account_move_reconcile,portal.group_portal,1,1,1,0
+access_account_journal_period_uinvoice_new_group,account.journal.period_new_group,account.model_account_journal_period,portal.group_portal,1,1,1,0

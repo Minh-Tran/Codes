@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+         <record id="base.group_init_external_partner" model="res.groups">
+            <field name="name">INIT Board Members</field>
+            <field name="category_id"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Account Portal Access Rules -->
+        
+        <record id="init_hr_employee" model="ir.rule">
+            <field name="name">INIT Employee</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="domain_force">['|', ('company_id', '=', False),('company_id','=',user.partner_id.company_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field name="perm_create" eval="False"/>
+        </record>
+        
+        <record id="init_mail_group_public_and_joined" model="ir.rule">
+            <field name="name">INIT Mail.group: access only public and joined groups</field>
+            <field name="model_id" ref="mail.model_mail_group"/>
+            <field name="domain_force">['|', ('public', '=', 'public'),  '&amp;', ('message_follower_ids', 'in', [user.partner_id.id]), '&amp;', ('public','=','groups'),('group_public_id','in', [g.id for g in user.groups_id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner')),(4, ref('portal.group_portal'))]"/>
+            <field name="perm_create" eval="False"/>
+        </record>
+        
+        <record id="init_portal_account_invoice_user_rule" model="ir.rule">
+            <field name="name">INIT Portal Personal Account Invoices</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="domain_force">['|',('company_id','in',[user.partner_id.company_id.id]),('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_account_invoice_line_user_rule" model="ir.rule">
+            <field name="name">INIT Portal Personal Account Invoices Line</field>
+            <field name="model_id" ref="account.model_account_invoice_line"/>
+            <field name="domain_force">['|',('company_id','in',[user.partner_id.company_id.id]),('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_account_voucher_user_rule" model="ir.rule">
+            <field name="name">INIT Portal Personal Payment</field>
+            <field name="model_id" ref="account_voucher.model_account_voucher"/>
+            <field name="domain_force">['|',('company_id','in',[user.partner_id.company_id.id]),('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_account_voucher_line_user_rule" model="ir.rule">
+            <field name="name">INIT Portal Personal Line</field>
+            <field name="model_id" ref="account_voucher.model_account_voucher_line"/>
+            <field name="domain_force">['|',('company_id','in',[user.partner_id.company_id.id]),('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+
+        <record id="init_portal_personal_contact" model="ir.rule">
+            <field name="name">INIT Portal Personal Contacts</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="domain_force">[('company_id','in',[user.partner_id.company_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_account_account_contact" model="ir.rule">
+            <field name="name">INIT Portal Account Account</field>
+            <field name="model_id" ref="account.model_account_account"/>
+            <field name="domain_force">[('company_id','in',[user.partner_id.company_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_account_move_contact" model="ir.rule">
+            <field name="name">INIT Portal Account Move</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="domain_force">[('company_id','in',[user.partner_id.company_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_account_move_line_contact" model="ir.rule">
+            <field name="name">INIT Portal Account Move Linr</field>
+            <field name="model_id" ref="account.model_account_move_line"/>
+            <field name="domain_force">['|',('company_id','in',[user.partner_id.company_id.id]),('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_res_company_contact" model="ir.rule">
+            <field name="name">INIT Portal Company</field>
+            <field name="model_id" ref="base.model_res_company"/>
+            <field name="domain_force">['|',('id','in',[user.partner_id.company_id.id]),('id','in',[user.company_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_project_user_rule" model="ir.rule">
+            <field name="name">INIT Portal Personal Project</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="domain_force">['|',('partner_id.company_id','in',[user.partner_id.company_id.id]),('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record id="init_portal_project_task_user_rule" model="ir.rule">
+            <field name="name">INIT Portal Personal Project Task</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="domain_force">['|',('company_id','in',[user.partner_id.company_id.id]),('project_id.partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_init_external_partner'))]"/>
+            
+        </record>
+        
+         <!-- Sale Portal Access Rules -->
+        <record id="portal_sale.portal_sale_order_user_rule" model="ir.rule">
+            <field name="name">Portal Personal Quotations/Sales Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="domain_force">['|','|',('partner_id','=',user.partner_id.id),('partner_id.parent_id','=',user.partner_id.id),('message_follower_ids','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('portal.group_portal'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+
+        <record id="portal_sale.portal_account_invoice_user_rule" model="ir.rule">
+            <field name="name">Portal Personal Account Invoices</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="domain_force">['|','|','|',('partner_id','=',user.partner_id.id),
+									            ('partner_id.parent_id','=',user.partner_id.id),
+									            ('user_id','=',user.id),
+									            ('message_follower_ids','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('portal.group_portal'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+        </record>
+        
+        <record model="ir.rule" id="base.res_partner_rule">
+            <field name="name">res.partner company</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+
+            <field name="domain_force">['|','|','|','|','|',
+                        ('company_id.child_ids','child_of',[user.company_id.id]),
+                        ('company_id','in',[user.company_id.id]),
+                        ('company_id','=',False), ('parent_id.company_id','in',[user.company_id.id]),
+                        ('company_id','in',[c.id for c in user.company_ids]), 
+                        ('parent_id.company_id','in',[c.id for c in user.company_ids])]</field>
+        </record>
+
+        <!-- <record id="portal_sale.portal_personal_contact" model="ir.rule">
+            <field name="name">Portal Personal Contacts</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="domain_force">['|','|',('id','=',user.partner_id.id),('parent_id','=',user.partner_id.id),('message_follower_ids','in',[user.partner_id.id])]</field>
+            <field eval="0" name="perm_read"/>
+            <field name="groups" eval="[(4, ref('portal.group_portal'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+        </record> -->
+
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve">
+<t t-extend="Login">
+    <t t-jquery="img" t-operation="replace">
+    <img src='/init_barry_portal_account/static/src/img/logo.png' width="180px"/>
+    </t>
+     <t t-jquery="div.oe_login_footer" t-operation="replace">
+                <div class="oe_login_footer">
+            </div>
+     </t>
+</t>
+   <t t-extend="WebClient">
+        <t t-jquery="div[class=oe_footer]" t-operation="replace">
+            <div class="oe_footer">
+           </div>
+        </t>
+   </t>
+
+</templates>
+

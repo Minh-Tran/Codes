@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_init_update_task_squence_wizard" model="ir.ui.view">
+              <field name="name">init.update.task.squence.form</field>
+              <field name="model">init.update.task.squence</field>
+              <field name="arch" type="xml">
+                <form string="PriceList" version="7.0">
+                    <group string="Additional Compensation.">
+                        <field name="amount" on_change="onchange_amount(amount,context)"/>
+                        <field name="task_value" invisible="1"/>
+                        <field name="tasks_ahead"/>
+                    </group>
+                    <footer>
+                        <button name="action_validate" string="Validate"  type="object" class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+              </field>
+        </record>
+
+
+
+        <record id="action_init_update_task_squence_wizard" model="ir.actions.act_window">
+            <field name="name">Additional Compensation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">init.update.task.squence</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+            
+	</data>
+</openerp>

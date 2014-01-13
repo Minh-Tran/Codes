@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+        
+        <!-- ======================== Task form ============================= -->
+        
+        <record id="init_view_project_mrp_inherit_form2" model="ir.ui.view">
+            <field name="name">project.task.form.view.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="task_value" readonly="1" />
+                    <field name="tasks_ahead" readonly="1" />
+                </field>
+                
+                <field name="categ_ids" position="after">
+                	<field name="sort_task_value" readonly="1" />
+                	<field name="amount" readonly="1"/>
+	                <group colspan="2">
+	                    <button name="%(action_init_update_task_squence_wizard)d" 
+	                    	string="Additional Compensation" type="action" class="oe_highlight"/>
+	                </group>
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_task_tree2" model="ir.ui.view">
+            <field name="name">project.task.tree</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+            	<field name="user_id" position="after">
+            		<field name="sequence" />
+                    <field name="task_value" />
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="init_view_account_form" model="ir.ui.view">
+            <field name="name">init.account.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="replace">
+					
+            	</xpath>
+                
+                <xpath expr="//field[@name='parent_id']" position="replace">
+					<field name="company_id" widget="selection" groups="base.group_multi_company"/>
+            	</xpath>
+            	
+            	 <xpath expr="//field[@name='active']" position="after">
+					<field name="parent_id" domain="[('company_id', '=', company_id)]"/>
+            	</xpath>
+            	
+            </field>
+        </record>
+        
+    </data>
+</openerp>

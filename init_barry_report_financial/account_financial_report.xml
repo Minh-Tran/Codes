@@ -1,0 +1,35 @@
+<openerp>
+	<data>
+		<report id="account.account_financial_report_balancesheet0" 
+				model="account.financial.report" 
+				name="account.financial.report" 
+				string="Report Financial" 
+				rml="init_barry_report_financial/report/account_financial_report.rml" 
+				header="False"/>
+		
+		<record id="account.action_account_report_pl" model="ir.actions.act_window">
+             <field name="context" eval="{'incoming_report': True,'default_account_report_id':ref('account.account_financial_report_profitandloss0')}"/>
+        </record>
+		
+		<report id="report_account_financial_report" 
+				model="account.financial.report" 
+				name="income.account.financial.report" 
+				string="Report Financial" 
+				rml="init_barry_report_financial/report/incoming_account_financial_report.rml" 
+				header="False"/>
+				
+		<report id="report_account_financial_report_month" 
+				model="account.financial.report" 
+				name="income.account.financial.month.report" 
+				string="Report Financial" 
+				rml="init_barry_report_financial/report/incoming_account_financial_month_report.rml" 
+				header="False"/>
+		
+		<report id="report_account_financial_report_year" 
+				model="account.financial.report" 
+				name="income.account.financial.year.report" 
+				string="Report Financial" 
+				rml="init_barry_report_financial/report/incoming_account_financial_year_report.rml" 
+				header="False"/>
+	</data>
+</openerp>

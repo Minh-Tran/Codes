@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+    	<record model="ir.ui.view" id="view_audittrail_rule_form_inherit">
+        <field name="name">audittrail.rule.form</field>
+        <field name="model">audittrail.rule</field>
+        <field name="inherit_id" ref="audittrail.view_audittrail_rule_form"/>
+        <field name="arch" type="xml">
+	        <xpath expr="/form/header/button[@name='subscribe']" position="replace">
+	        	<button string="_Subscribe" name="subscribe_inherit" icon="gtk-ok"
+                           type="object" states="draft"/>
+	        </xpath>
+	        <xpath expr="/form/header/button[@name='unsubscribe']" position="replace">
+	        	<button string="_Unsubscribe" name="unsubscribe_inherit" icon="gtk-ok"
+                           type="object" states="subscribed"/>
+	        </xpath>
+	        <xpath expr="//field[@name='object_id']" position="after">
+	        	<field name="check_all_model"/>
+	        </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

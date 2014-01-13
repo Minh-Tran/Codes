@@ -1,0 +1,39 @@
+<openerp>
+	<data>
+		<report
+            auto="False"
+            id="account.account_invoices"
+            model="account.invoice"
+            name="account.invoice"
+            rml="init_barry_invoice/report/account_print_invoice.rml"
+            string="Invoices"
+            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+            attachment_use="True"
+            usage="default"
+            header="False"
+            />
+            
+         <record id="aeroo_invoice_ods_id" model="ir.actions.report.xml">
+	        <field name="name">Invoice ODS</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">invoice_ods</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="parser_loc">init_barry_invoice/report/invoice_ods.py</field>
+	        <field name="report_rml">init_barry_invoice/report/invoice_ods.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	    </record>
+	    
+	    <record model="ir.values" id="pricelist_demo">
+	        <field name="model_id" ref="model_account_invoice" />
+	        <field name="name">Pricelist</field>
+	        <field name="key2">client_print_multi</field>
+	        <field name="value" eval="'ir.actions.report.xml,'+str(aeroo_invoice_ods_id)" />
+	        <field name="key">action</field>
+	        <field name="model">account.invoice</field>
+	    </record>
+		
+	</data>
+</openerp>

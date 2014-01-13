@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    	
+    	<menuitem name="Human Resources"
+            id="hr.menu_hr_root"
+            groups="base.group_hr_manager,base.group_hr_user,base.group_init_external_partner"
+            sequence="90"/>
+          
+          <menuitem id="hr.menu_hr_main" parent="hr.menu_hr_root" name="Human Resources" sequence="0"
+          	groups="base.group_hr_manager,base.group_hr_user,base.group_init_external_partner"/>
+          <menuitem action="hr.open_view_employee_list_my" id="hr.menu_open_view_employee_list_my" sequence="3" parent="hr.menu_hr_main"
+          	groups="base.group_hr_manager,base.group_hr_user,base.group_init_external_partner"/>
+       
+       <!-- Billing -->
+       
+       <record id="portal_sale.portal_action_invoices" model="ir.actions.act_window">
+            <field name="domain">[ '&amp;', ('type','in',['out_invoice','out_refund']),'|',
+            						('partner_id','=', {'user_id':uid }),
+						            ('user_id','=',uid),]</field>
+        </record> 
+       
+       <!-- board member -->
+        <menuitem name="Board Members" 
+                  id="init_portal_orders" 
+                  parent="portal.portal_menu" 
+                  groups="base.group_init_external_partner"
+                  sequence="20"/>
+        
+        <record id="init_portal_action_invoices" model="ir.actions.act_window">
+            <field name="name">Customer Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','in',['out_invoice','out_refund'])]</field>
+            <field name="context">{'type':['out_invoice','out_refund'], 'journal_type': 'sale'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help">We haven't sent you any invoice.</field>
+        </record>
+
+        <record id="init_portal_action_invoices_tree_spec" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="init_portal_action_invoices"/>
+            <field name="view_id" ref="account.invoice_tree"/>
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="0"/>
+        </record>
+
+        <record id="init_portal_action_invoices_form_spec" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="init_portal_action_invoices"/>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+        <menuitem name="Customer Invoices" id="init_portal_invoices" parent="init_portal_orders"
+            action="init_portal_action_invoices" sequence="10" groups="base.group_init_external_partner"/>
+            
+        <menuitem name="Supplier Invoices" action="account.action_invoice_tree2" id="init_menu_action_invoice_tree2" parent="init_portal_orders"
+        	sequence="10" groups="base.group_init_external_partner"/>
+        
+        <menuitem parent="init_portal_orders" sequence="14" 
+            id="init_menu_act_crossovered_budget_lines_view"
+            groups="base.group_init_external_partner"
+            action="account_budget.act_crossovered_budget_lines_view" />
+        
+        <menuitem
+            action="base.action_partner_form"
+            id="inint_menu_partner_form"
+            parent="init_portal_orders"
+            groups="base.group_init_external_partner" sequence="15"
+           />
+            
+        <menuitem id="init_menu_finance_legal_statement" name="Legal Reports" parent="init_portal_orders"
+            groups="base.group_init_external_partner" sequence="16"/>
+            
+        <menuitem
+            parent="init_menu_finance_legal_statement"
+            id="init_final_accounting_reports"
+            groups="base.group_init_external_partner"
+            name="Accounting Reports"/>
+         
+        <menuitem
+            icon="STOCK_PRINT"
+            name="General Ledger"
+            parent="init_final_accounting_reports"
+            action="account.action_account_general_ledger_menu"
+            groups="base.group_init_external_partner"
+            id="init_menu_general_ledger"
+           />
+        <menuitem
+                icon="STOCK_PRINT"
+                name="Trial Balance"
+                parent="init_final_accounting_reports"
+                action="account.action_account_balance_menu"
+                groups="base.group_init_external_partner"
+                id="init_menu_general_Balance_report"
+               />
+               
+        <menuitem 
+                icon="STOCK_PRINT" 
+                name="Balance Sheet" 
+                action="account.action_account_report_bs" 
+                id="init_menu_account_report_bs" 
+                groups="base.group_init_external_partner"
+                parent="init_final_accounting_reports"/>
+                
+        <menuitem 
+                icon="STOCK_PRINT" 
+                name="Profit And Loss" 
+                action="account.action_account_report_pl" 
+                id="init_menu_account_report_pl" 
+                groups="base.group_init_external_partner"
+                parent="init_final_accounting_reports"/>
+        <menuitem 
+                icon="STOCK_PRINT" 
+                name="Financial Report" 
+                action="account.action_account_report" 
+                id="init_menu_account_report" 
+                groups="base.group_init_external_partner"
+                parent="init_final_accounting_reports" 
+                sequence="100"/>
+
+
+        <menuitem
+            parent="init_menu_finance_legal_statement"
+            id="init_menu_journals_report"
+            groups="base.group_init_external_partner"
+            name="Journals"/>
+            
+        <menuitem
+            name="Centralizing Journal"
+            parent="init_menu_journals_report"
+            action="account.action_account_central_journal"
+            id="menu_account_central_journal"
+            groups="base.group_init_external_partner"
+            icon="STOCK_PRINT"/>
+        <menuitem
+            name="General Journals"
+            parent="init_menu_journals_report"
+            action="account.action_account_general_journal"
+            id="menu_account_general_journal"
+            groups="base.group_init_external_partner"
+            icon="STOCK_PRINT"/>
+        <menuitem
+            name="Journals"
+            parent="init_menu_journals_report"
+            action="account.action_account_print_journal"
+            id="menu_account_print_journal"
+            groups="base.group_init_external_partner"
+            icon="STOCK_PRINT"/>
+        <menuitem
+            name="Sale/Purchase Journals"
+            parent="init_menu_journals_report"
+            action="account.action_account_print_sale_purchase_journal"
+            id="menu_account_print_sale_purchase_journal"
+            groups="base.group_init_external_partner"
+            icon="STOCK_PRINT"
+            sequence="1"/>
+            
+        <!--
+    	    	Invisible Voucher   	
+    	-->  
+            
+       <record model="ir.ui.view" id="init_view_vendor_receipt_form1">
+            <field name="name">init.account.voucher.receipt.form</field>
+            <field name="model">account.voucher</field>
+            <field name="arch" type="xml">
+                <form string="Receipt" version="7.0">
+                <header invisible="context.get('line_type', False)">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted" statusbar_colors='{"proforma":"blue"}'/>
+                </header>
+                <sheet>
+                    <h1 attrs="{'invisible': [('number','=',False)]}"><field name="number"/></h1>
+                    <group invisible="context.get('line_type', False)">
+                        <group>
+                            <field name="partner_id" domain="[('customer','=',True)]" required="1" on_change="onchange_partner_id(partner_id, journal_id, amount, currency_id, type, date, context)" string="Customer" context="{'search_default_customer': 1}"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount" class="oe_inline"
+                                string="Paid Amount"
+                                widget="monetary" options="{'currency_field': 'currency_id'}"
+                                on_change="onchange_amount(amount, payment_rate, partner_id, journal_id, currency_id, type, date, payment_rate_currency_id, company_id, context)"/>
+                            <field name="journal_id"
+                                domain="[('type','in',['bank', 'cash'])]"
+                                widget="selection"
+                                on_change="onchange_journal(journal_id, line_cr_ids, False, partner_id, date, amount, type, company_id, context)"
+                                string="Payment Method"/>
+                        </group>
+                        <group>
+                            <field name="date" on_change="onchange_date(date, currency_id, payment_rate_currency_id, amount, company_id, context)"/>
+                            <field name="reference" string="Payment Ref" placeholder="e.g. 003/10"/>
+                            <field name="name" colspan="2" placeholder="e.g. Invoice SAJ/0042"/>
+                            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+
+                            <field name="account_id"
+                                widget="selection"
+                                invisible="True"/>
+                            <field name="pre_line" invisible="1"/>
+                            <field name="type" invisible="True"/>
+                        </group>
+                    </group>
+                    
+                    </sheet>
+                    <div class="oe_chatter" invisible="context.get('line_type', False)">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="init_action_vendor_receipt" model="ir.actions.act_window">
+            <field name="name">Portal Customer Payments</field>
+            <field name="res_model">account.voucher</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('journal_id.type', 'in', ['bank', 'cash']), ('type','=','receipt')]</field>
+            <field name="context">{'type':'receipt'}</field>
+            <field name="search_view_id" ref="account_voucher.view_voucher_filter_customer_pay"/>
+            
+        </record>
+        <record id="action_vendor_receipt_tree1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="init_action_vendor_receipt"/>
+        </record>
+        <record id="action_vendor_receipt_form2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="init_view_vendor_receipt_form1"/>
+            <field name="act_window_id" ref="init_action_vendor_receipt"/>
+        </record>
+        
+        <menuitem action="init_action_vendor_receipt" icon="STOCK_JUSTIFY_FILL" sequence="12"
+            id="init_menu_action_vendor_receipt1"  parent="init_portal_orders" groups="base.group_init_external_partner"/>
+         
+        <!-- Menu Portal Project --> 
+        <record id="portal_open_view_project" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_mode">kanban,gantt</field>
+            <field name="view_id" ref="project.view_project_kanban"/>
+            <field name="search_view_id" ref="project.view_project_project_filter"/>
+        </record>
+        
+        <menuitem name="Projects" id="portal_project.portal_services_projects" parent="portal.portal_projects"
+            action="portal_open_view_project" sequence="10"/>
+            
+        <record id="portal_action_view_task" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban,tree,form,calendar,gantt,graph</field>            
+            <field name="view_id" ref="project.view_task_kanban"/>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        
+        <menuitem name="Tasks" id="menu_portal_action_view_task" parent="portal.portal_projects"
+            action="portal_action_view_task" sequence="15"/>
+            
+       <!-- Add payment URL in property -->
+       
+       <record model="ir.ui.view" id="view_base_company_payment_url_form">
+            <field name="name">base.res.company.form.inherit</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='currency_id']" position="after">
+						<field name="payment_url" widget="url" placeholder="e.g. https://revo4server.com/master/tcb/properties/index.php" />
+	            	</xpath>
+            </field>
+        </record>
+
+	    <record id="action_init_open_payment_url" model="ir.actions.server">
+            <field name="name">Open Website Payment</field>
+            <field name="model_id" ref="model_res_company"/>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">action = self.open_payment_url(cr, uid)</field>
+        </record>
+	    
+	    <menuitem action="action_init_open_payment_url" icon="STOCK_JUSTIFY_FILL" sequence="100" name="Open Website Payment"
+            id="menu_action_open_payment_url"  parent="init_portal_orders" groups="base.group_init_external_partner"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+                 
+        <record model="ir.rule" id="base.res_partner_rule">
+            <field name="name">res.partner company</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+
+            <field name="domain_force">['|','|','|','|','|',
+                        ('company_id.child_ids','child_of',[user.company_id.id]),
+                        ('company_id','in',[user.company_id.id]),
+                        ('company_id','=',False), ('parent_id.company_id','in',[user.company_id.id]),
+                        ('company_id','in',[c.id for c in user.company_ids]), 
+                        ('parent_id.company_id','in',[c.id for c in user.company_ids])]</field>
+        </record>
+        
+        <record id="init_barry_portal_account.init_portal_account_account_contact" model="ir.rule">
+            <field name="name">INIT Portal Account Account</field>
+            <field name="model_id" ref="account.model_account_account"/>
+            <field name="domain_force">['|','|',('company_id','=',False),
+                                        ('company_id','in',[c.id for c in user.company_ids]), 
+                                        ('company_id','child_of',[user.company_id.id])]</field>
+            
+        </record>
+        
+        <record id="account.invoice_comp_rule" model="ir.rule">
+            <field name="name">Invoice multi-company</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|','|',('company_id','=',False),('company_id','in',[c.id for c in user.company_ids]), ('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+        
+        <!-- Record Rule For Company -->
+        <record id="base.res_company_rule" model="ir.rule">
+            <field name="name">company rule</field>
+            <field model="ir.model" name="model_id" ref="base.model_res_company"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|',('id','child_of',[user.company_id.id]),
+                                        ('id','in',[c.id for c in user.company_ids])]</field>
+        </record>
+        
+     <record id="account.account_comp_rule" model="ir.rule">
+        <field name="name">Account multi-company</field>
+        <field name="model_id" ref="account.model_account_account"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|','|',('company_id','=',False),
+                                        ('company_id','in',[c.id for c in user.company_ids]), 
+                                        ('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    
+    <record id="base.property_rule" model="ir.rule">
+            <field name="name">Property multi-company</field>
+            <field model="ir.model" name="model_id" ref="base.model_ir_property"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|','|',('company_id','=',False),
+                                        ('company_id','in',[c.id for c in user.company_ids]), 
+                                        ('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+    
+    <record id="account.journal_comp_rule" model="ir.rule">
+        <field name="name">Journal multi-company</field>
+        <field name="model_id" ref="account.model_account_journal"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|','|',('company_id','=',False),
+                                        ('company_id','in',[c.id for c in user.company_ids]), 
+                                        ('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+
+    </data>
+</openerp>
